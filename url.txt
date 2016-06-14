@@ -1,0 +1,1 @@
+http://localhost:8080/restlet/search?paging=20&query=q&field=contents
