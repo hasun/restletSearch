@@ -15,7 +15,7 @@
 
 </head>
 <body>
-  	<div></div>	
+  	<div>test</div>	
 
 </body>
 </html>
