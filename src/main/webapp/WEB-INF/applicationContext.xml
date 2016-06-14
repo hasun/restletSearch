@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN 2.0//EN" "http://www.springframework.org/dtd/spring-beans-2.0.dtd">
+<beans>
+  <bean id="basecampComponent" class="org.restlet.ext.spring.SpringComponent">
+    <property name="defaultTarget" ref="basecampAppliction" />
+  </bean>
+
+  <bean id="basecampAppliction" class="com.mycompany.restlet.basecamp.application.BaseCampApplication">
+    <property name="root" ref="router" />
+  </bean>
+
+  <!--  Define the router -->
+  <bean name="router" class="org.restlet.ext.spring.SpringBeanRouter" />
+  
+  <!-- Define all the routes -->
+  <bean name="/hello" class="com.mycompany.restlet.basecamp.resource.demo.BaseCampResource" scope="prototype" autowire="byName" />
+  <bean name="/search" class="com.mycompany.restlet.search.resource.SearchResource" scope="prototype" autowire="byName" />
+</beans>
