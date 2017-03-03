@@ -31,6 +31,8 @@ import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.index.Term;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
+import org.bitbucket.eunjeon.mecab_ko_lucene_analyzer.MeCabKoTokenizer;
+import org.snu.ids.ha.ma.MorphemeAnalyzer;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -91,7 +93,9 @@ public class indexer {
 			System.out.println("Indexing to directory '" + indexPath + "'...");
 
 			Directory dir = FSDirectory.open(Paths.get(indexPath));
-			Analyzer analyzer = new StandardAnalyzer();
+			Analyzer analyzer = new StandardAnalyzer() ;
+//			MorphemeAnalyzer ma = new MorphemeAnalyzer();
+			
 			IndexWriterConfig iwc = new IndexWriterConfig(analyzer);
 
 			if (create) {

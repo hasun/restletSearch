@@ -9,6 +9,7 @@ import java.nio.file.Paths;
 import java.util.Date;
 
 import org.apache.lucene.analysis.Analyzer;
+import org.apache.lucene.analysis.en.EnglishAnalyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.DirectoryReader;
@@ -28,7 +29,7 @@ import com.mycompany.restlet.search.model.SearchResultVo;
 public class SearchResource extends ServerResource {
 
   @SuppressWarnings("unused")
-@Get
+  @Get
   public String getResource() throws IOException, ParseException {
 	  
 	  String index = "C:/Users/SC-007/workspace/restlet/index";
@@ -44,7 +45,7 @@ public class SearchResource extends ServerResource {
   
       IndexReader reader = DirectoryReader.open(FSDirectory.open(Paths.get(index)));
       IndexSearcher searcher = new IndexSearcher(reader);
-      Analyzer analyzer = new StandardAnalyzer();
+      Analyzer analyzer = new EnglishAnalyzer();
 
       BufferedReader in = null;
       QueryParser parser = new QueryParser(field, analyzer);
@@ -54,6 +55,7 @@ public class SearchResource extends ServerResource {
       }    
       
       Query query = parser.parse(queryString);
+//      Query query = parser.createBooleanQuery(field, queryString );
       System.out.println("Searching for: " + query.toString(field));
           
       String resultStr = doPagingSearch(in, searcher, query, hitsPerPage);
